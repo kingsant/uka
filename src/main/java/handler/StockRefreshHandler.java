@@ -1,5 +1,6 @@
 package handler;
 
+import alert.AlertManager;
 import bean.StockBean;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.notification.Notification;
@@ -172,12 +173,7 @@ public abstract class StockRefreshHandler extends DefaultTableModel {
             addRow(convertData);
         }
         //toast
-//        String groupId = "MyPluginNotification";
-//        String title = "My Plugin Notification";
-//        String content = "This is a notification from my plugin.";
-//
-//        Notification notification = new Notification(groupId, title, content, NotificationType.INFORMATION);
-//        Notifications.Bus.notify(notification);
+        AlertManager.recordPriceAndAlert(bean);
     }
 
     /**

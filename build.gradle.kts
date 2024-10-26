@@ -16,6 +16,8 @@ repositories {
 
 dependencies {
     implementation("com.github.promeg:tinypinyin:2.0.3")
+    implementation("cn.hutool:hutool-all:5.7.10")
+    implementation("com.google.guava:guava:30.1-jre")
     implementation("org.quartz-scheduler:quartz:2.3.2") {
         exclude(group = "com.zaxxer")
         exclude(group = "org.slf4j")

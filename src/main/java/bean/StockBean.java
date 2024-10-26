@@ -14,6 +14,7 @@ public class StockBean {
     private String now;
     private String change;//涨跌
     private String changePercent;
+
     private String time;
     /**
      * 最高价

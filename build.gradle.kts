@@ -14,6 +14,15 @@ repositories {
     }
 }
 
+dependencies {
+    implementation("com.github.promeg:tinypinyin:2.0.3")
+    implementation("org.quartz-scheduler:quartz:2.3.2") {
+        exclude(group = "com.zaxxer")
+        exclude(group = "org.slf4j")
+        exclude(group = "com.mchange")
+    }
+}
+
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {

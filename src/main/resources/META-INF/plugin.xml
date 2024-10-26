@@ -1,35 +1,29 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
-    <id>com.example.demo</id>
+    <id>com.huage2580.leeks</id>
+    <name>Leeks</name>
+    <vendor email="huage2580@gmail.com" url="http://github.com/huge2580">huage2580</vendor>
 
-    <!-- Public plugin name should be written in Title Case.
-         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>Demo</name>
-
-    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="jj@yourcompany.com" url="https://www.yourcompany.com">YourCompany</vendor>
-
-    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
-         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
-         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    test demo
-  ]]></description>
+    提供基金和股票的实时行情查看，支持港股美股
+    韭菜专用摸鱼插件!<br>
+    韭菜专用摸鱼插件!<br>
+    韭菜专用摸鱼插件!<br>
+        good luck!<br>
+        使用说明：https://github.com/huage2580/leeks
+    ]]></description>
 
-    <!-- Product and plugin compatibility requirements.
-         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
 
-    <!-- Extension points defined by the plugin.
-         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-
+        <!-- Add your extensions here -->
+        <toolWindow anchor="left" id="leeks" factoryClass="FundWindow"/>
+        <applicationConfigurable id="leeks_settings" instance="SettingsWindow"/>
+        <notificationGroup id="Leeks Notification Group" displayType="BALLOON"/>
     </extensions>
+
     <actions>
-        <action id="com.example.demo.notice" class="com.example.demo.MyNotice" text="MyNotice1"
-                description="MyNotice11111">
-            <add-to-group group-id="RunMenu" anchor="after" relative-to-action="Stop"/>
-        </action>
+        <!-- Add your actions here -->
     </actions>
 </idea-plugin>

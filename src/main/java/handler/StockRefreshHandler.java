@@ -4,6 +4,7 @@ import bean.StockBean;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.ui.JBColor;
 import com.intellij.ui.table.JBTable;
+import com.jgoodies.common.base.Strings;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import utils.PinYinUtils;
@@ -30,7 +31,7 @@ public abstract class StockRefreshHandler extends DefaultTableModel {
     static {
         PropertiesComponent instance = PropertiesComponent.getInstance();
         String tableHeaderValue = instance.getValue(WindowUtils.STOCK_TABLE_HEADER_KEY);
-        if (StringUtils.isBlank(tableHeaderValue)) {
+        if (Strings.isBlank(tableHeaderValue)) {
             instance.setValue(WindowUtils.STOCK_TABLE_HEADER_KEY, WindowUtils.STOCK_TABLE_HEADER_VALUE);
             tableHeaderValue = WindowUtils.STOCK_TABLE_HEADER_VALUE;
         }

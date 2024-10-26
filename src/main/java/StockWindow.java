@@ -9,11 +9,11 @@ import com.intellij.ui.AnActionButton;
 import com.intellij.ui.ToolbarDecorator;
 import com.intellij.ui.awt.RelativePoint;
 import com.intellij.ui.table.JBTable;
+import com.jgoodies.common.base.Strings;
 import handler.SinaStockHandler;
 import handler.StockRefreshHandler;
 import handler.TencentStockHandler;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import quartz.HandlerJob;
@@ -29,12 +29,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
 public class StockWindow {
-    public static final String NAME = "Stock";
+    public static final String NAME = "sk";
     private JPanel mPanel;
 
     static StockRefreshHandler handler;
@@ -175,7 +176,7 @@ public class StockWindow {
                 dataMap.put(HandlerJob.KEY_HANDLER, handler);
                 dataMap.put(HandlerJob.KEY_CODES, codes);
                 String cronExpression = instance.getValue("key_cron_expression_stock");
-                if (StringUtils.isEmpty(cronExpression)) {
+                if (Strings.isEmpty(cronExpression)) {
                     cronExpression = "*/10 * * * * ?";
                 }
                 quartzManager.runJob(HandlerJob.class, cronExpression, dataMap);
@@ -192,7 +193,20 @@ public class StockWindow {
 
     private static List<String> loadStocks(){
 //        return FundWindow.getConfigList("key_stocks", "[,，]");
-        return SettingsWindow.getConfigList("key_stocks");
+        List<String> keyStocks = SettingsWindow.getConfigList("key_stocks");
+        List<String> converted = new ArrayList<>(keyStocks.size());
+        for (String keyStock : keyStocks) {
+            if (keyStock.startsWith("6")) {
+                converted.add("sh" + keyStock);
+            } else if (keyStock.startsWith("0") || keyStock.startsWith("3")) {
+                converted.add("sz" + keyStock);
+            } else if (keyStock.startsWith("4") || keyStock.startsWith("8")) {
+                converted.add("bj" + keyStock);
+            } else {
+                converted.add(keyStock);
+            }
+        }
+        return converted;
     }
 
 }

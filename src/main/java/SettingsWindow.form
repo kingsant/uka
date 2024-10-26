@@ -6,8 +6,6 @@
     <rowspec value="center:max(d;4px):noGrow"/>
     <rowspec value="top:4dlu:noGrow"/>
     <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
     <colspec value="left:119px:noGrow"/>
     <colspec value="left:13dlu:noGrow"/>
     <colspec value="left:d:grow"/>
@@ -43,79 +41,6 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="522ba" layout-manager="FormLayout">
-            <rowspec value="center:max(d;4px):noGrow"/>
-            <rowspec value="top:4dlu:noGrow"/>
-            <rowspec value="center:max(d;4px):noGrow"/>
-            <rowspec value="top:4dlu:noGrow"/>
-            <rowspec value="center:d:grow"/>
-            <colspec value="left:0px:grow"/>
-            <colspec value="left:4dlu:noGrow"/>
-            <colspec value="fill:d:grow"/>
-            <colspec value="left:4dlu:noGrow"/>
-            <colspec value="fill:d:grow"/>
-            <constraints>
-              <tabbedpane title="Fund">
-                <tooltip value="基金"/>
-              </tabbedpane>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="bf47d" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <forms defaultalign-vert="false"/>
-                </constraints>
-                <properties>
-                  <text value="基金编码，英文分号分隔（持仓成本价和持仓份额跟在基金编码后，用英文逗号分隔）："/>
-                </properties>
-              </component>
-              <scrollpane id="f10a8">
-                <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="5" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                  <forms defaultalign-horz="false" defaultalign-vert="false"/>
-                </constraints>
-                <properties/>
-                <border type="none"/>
-                <children>
-                  <component id="732f5" class="javax.swing.JTextArea" binding="textAreaFund">
-                    <constraints/>
-                    <properties>
-                      <lineWrap value="true"/>
-                      <minimumSize width="370" height="17"/>
-                      <preferredSize width="370" height="190"/>
-                      <rows value="10"/>
-                      <text value=""/>
-                      <toolTipText value="基金编码，英文分号分隔（持仓成本价和持仓份额跟在基金编码后，用英文逗号分隔），例如:【001632,3.2050,951.64;002340,4.2820,467.07】"/>
-                    </properties>
-                  </component>
-                </children>
-              </scrollpane>
-              <component id="304f" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <forms defaultalign-horz="false" defaultalign-vert="false"/>
-                </constraints>
-                <properties>
-                  <enabled value="true"/>
-                  <text value="持续刷新Cron表达式（支持多个，用英文分号分隔;）："/>
-                  <toolTipText value=""/>
-                </properties>
-              </component>
-              <component id="f0ef0" class="javax.swing.JTextField" binding="cronExpressionFund">
-                <constraints>
-                  <grid row="0" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
-                  <forms defaultalign-horz="false"/>
-                </constraints>
-                <properties>
-                  <toolTipText value="支持多个，使用分号分割，注意：多个表达式不要有交集，因为会运行多次；表达式：0 * * * * ?"/>
-                </properties>
-              </component>
-            </children>
-          </grid>
           <grid id="c8ca2" layout-manager="FormLayout">
             <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
@@ -141,7 +66,7 @@
                   <forms defaultalign-vert="false"/>
                 </constraints>
                 <properties>
-                  <text value="股票编码，英文分号分隔（成本价和持仓接在编码后用逗号分隔）："/>
+                  <text value="英文分号分隔（成本价和持仓接在编码后用逗号分隔）："/>
                 </properties>
               </component>
               <scrollpane id="e0430">
@@ -190,88 +115,8 @@
               </component>
             </children>
           </grid>
-          <grid id="b3ed2" layout-manager="FormLayout">
-            <rowspec value="center:max(d;4px):noGrow"/>
-            <rowspec value="top:4dlu:noGrow"/>
-            <rowspec value="center:max(d;4px):noGrow"/>
-            <rowspec value="top:4dlu:noGrow"/>
-            <rowspec value="center:d:grow"/>
-            <colspec value="left:0px:grow"/>
-            <colspec value="left:4dlu:noGrow"/>
-            <colspec value="fill:d:grow"/>
-            <colspec value="left:4dlu:noGrow"/>
-            <colspec value="fill:d:grow"/>
-            <constraints>
-              <tabbedpane title="Coin"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="9bf70" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <forms defaultalign-vert="false"/>
-                </constraints>
-                <properties>
-                  <text value="虚拟币编码，英文逗号分隔：(虚拟币行情必须使用代理才能查看)"/>
-                </properties>
-              </component>
-              <scrollpane id="63733">
-                <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="5" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                  <forms defaultalign-horz="false" defaultalign-vert="false"/>
-                </constraints>
-                <properties/>
-                <border type="none"/>
-                <children>
-                  <component id="149ff" class="javax.swing.JTextArea" binding="textAreaCoin">
-                    <constraints/>
-                    <properties>
-                      <lineWrap value="true"/>
-                      <minimumSize width="370" height="17"/>
-                      <preferredSize width="370" height="190"/>
-                      <rows value="10"/>
-                      <toolTipText value="英文逗号分隔，例如：【BTC-USD,DOGE-USD】注意编码大写，一般格式为[币编码-USD]"/>
-                    </properties>
-                    <clientProperties>
-                      <html.disable class="java.lang.Boolean" value="false"/>
-                    </clientProperties>
-                  </component>
-                </children>
-              </scrollpane>
-              <component id="2e72f" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <forms defaultalign-horz="false"/>
-                </constraints>
-                <properties>
-                  <text value="持续刷新Cron表达式（支持多个，用英文分号分隔;）："/>
-                </properties>
-              </component>
-              <component id="b5c4c" class="javax.swing.JTextField" binding="cronExpressionCoin">
-                <constraints>
-                  <grid row="0" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
-                  <forms defaultalign-horz="false"/>
-                </constraints>
-                <properties>
-                  <toolTipText value="支持多个，使用分号分割，注意：多个表达式不要有交集，因为会运行多次；表达式：0 * * * * ?"/>
-                </properties>
-              </component>
-            </children>
-          </grid>
         </children>
       </tabbedpane>
-      <component id="8c26" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <text value="小韭菜 V1.9.3"/>
-        </properties>
-      </component>
       <grid id="b17a5" layout-manager="FlowLayout" hgap="30" vgap="5" flow-align="0">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false"/>

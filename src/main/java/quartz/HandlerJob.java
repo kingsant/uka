@@ -5,8 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.intellij.util.ExceptionUtil;
-import handler.CoinRefreshHandler;
-import handler.FundRefreshHandler;
 import handler.StockRefreshHandler;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
@@ -41,10 +39,6 @@ public class HandlerJob implements Job {
             List<String> codes = (List<String>) mergedJobDataMap.get(KEY_CODES);
             if (handler instanceof StockRefreshHandler) {
                 ((StockRefreshHandler) handler).handle(codes);
-            } else if (handler instanceof FundRefreshHandler) {
-                ((FundRefreshHandler) handler).handle(codes);
-            } else if (handler instanceof CoinRefreshHandler) {
-                ((CoinRefreshHandler) handler).handle(codes);
             }
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             LogUtil.info(String.format("%s 运行 %s ;下一次运行时间为 %s",

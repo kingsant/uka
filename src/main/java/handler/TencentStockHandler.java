@@ -1,6 +1,7 @@
 package handler;
 
 import bean.StockBean;
+import com.jgoodies.common.base.Strings;
 import org.apache.commons.lang.StringUtils;
 import utils.HttpClientPool;
 import utils.LogUtil;
@@ -59,7 +60,7 @@ public class TencentStockHandler extends StockRefreshHandler {
     }
 
     private void stepAction() {
-        if (StringUtils.isEmpty(urlPara)) {
+        if (Strings.isEmpty(urlPara)) {
             return;
         }
         try {
@@ -88,7 +89,7 @@ public class TencentStockHandler extends StockRefreshHandler {
 
             BigDecimal now = new BigDecimal(values[3]);
             String costPriceStr = bean.getCostPrise();
-            if (StringUtils.isNotEmpty(costPriceStr)) {
+            if (Strings.isNotEmpty(costPriceStr)) {
                 BigDecimal costPriceDec = new BigDecimal(costPriceStr);
                 BigDecimal incomeDiff = now.add(costPriceDec.negate());
                 if (costPriceDec.compareTo(BigDecimal.ZERO) <= 0) {
@@ -102,7 +103,7 @@ public class TencentStockHandler extends StockRefreshHandler {
                 }
 
                 String bondStr = bean.getBonds();
-                if (StringUtils.isNotEmpty(bondStr)) {
+                if (Strings.isNotEmpty(bondStr)) {
                     BigDecimal bondDec = new BigDecimal(bondStr);
                     BigDecimal incomeDec = incomeDiff.multiply(bondDec)
                             .setScale(2, RoundingMode.HALF_UP);
@@ -118,7 +119,8 @@ public class TencentStockHandler extends StockRefreshHandler {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                refreshTimeLabel.setText(LocalDateTime.now().format(TianTianFundHandler.timeFormatter));
+                //todo
+//                refreshTimeLabel.setText(LocalDateTime.now().format(TianTianFundHandler.timeFormatter));
                 refreshTimeLabel.setToolTipText("最后刷新时间");
             }
         });

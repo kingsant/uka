@@ -44,8 +44,7 @@ public class FundWindow implements ToolWindowFactory {
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         //先加载代理
         loadProxySetting();
-
-        ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
+        ContentFactory contentFactory = ContentFactory.getInstance();
         //股票
         Content content_stock = contentFactory.createContent(stockWindow.getmPanel(), StockWindow.NAME, false);
         ContentManager contentManager = toolWindow.getContentManager();

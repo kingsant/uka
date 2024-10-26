@@ -121,6 +121,6 @@ public class SinaStockHandler extends StockRefreshHandler {
 
     @Override
     public void stopHandle() {
-        LogUtil.info("leeks stock 自动刷新关闭!");
+        LogUtil.info("uka sk 自动刷新关闭!");
     }
 }

@@ -2,6 +2,7 @@ import com.intellij.icons.AllIcons;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.actionSystem.ActionToolbarPosition;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.popup.JBPopupFactory;
 import com.intellij.openapi.ui.popup.PopupStep;
@@ -38,7 +39,6 @@ public class FundWindow implements ToolWindowFactory {
     private JPanel mPanel;
 
     private Boolean initialized;
-    private StockWindow stockWindow = new StockWindow();
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
@@ -46,6 +46,7 @@ public class FundWindow implements ToolWindowFactory {
         loadProxySetting();
         ContentFactory contentFactory = ContentFactory.getInstance();
         //股票
+        StockWindow stockWindow = new StockWindow();
         Content content_stock = contentFactory.createContent(stockWindow.getmPanel(), StockWindow.NAME, false);
         ContentManager contentManager = toolWindow.getContentManager();
         contentManager.addContent(content_stock);
@@ -66,7 +67,6 @@ public class FundWindow implements ToolWindowFactory {
             LogUtil.info("uka UI已初始化");
             return;
         }
-        //todo
 
         JLabel refreshTimeLabel = new JLabel();
         refreshTimeLabel.setToolTipText("最后刷新时间");
@@ -133,6 +133,7 @@ public class FundWindow implements ToolWindowFactory {
 
     public static void stop() {
         QuartzManager.getInstance(NAME).stopJob();
+
 
     }
 }

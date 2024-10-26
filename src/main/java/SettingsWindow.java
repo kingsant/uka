@@ -2,6 +2,7 @@ import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.util.text.Strings;
+import common.Consts;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
 import quartz.QuartzManager;
@@ -32,10 +33,11 @@ public class SettingsWindow  implements Configurable {
     private JLabel proxyLabel;
     private JTextField inputProxy;
     private JButton proxyTestButton;
+    private JCheckBox alertCheckBox;
 
     @Override
     public @Nls(capitalization = Nls.Capitalization.Title) String getDisplayName() {
-        return "Leeks";
+        return "uka";
     }
 
     @Override
@@ -48,6 +50,7 @@ public class SettingsWindow  implements Configurable {
         checkBoxTableStriped.setSelected(instance.getBoolean("key_table_striped"));
         checkboxSina.setSelected(instance.getBoolean("key_stocks_sina"));
         checkboxLog.setSelected(instance.getBoolean("key_close_log"));
+        alertCheckBox.setSelected(instance.getBoolean(Consts.KEY_ALERT));
         cronExpressionStock.setText(instance.getValue("key_cron_expression_stock","*/10 * * * * ?")); //默认每10秒执行
         //代理设置
         inputProxy.setText(instance.getValue("key_proxy"));
@@ -73,19 +76,17 @@ public class SettingsWindow  implements Configurable {
             throw new ConfigurationException(errorMsg);
         }
         PropertiesComponent instance = PropertiesComponent.getInstance();
-//        instance.setValue("key_funds", textAreaFund.getText());
         instance.setValue("key_stocks", textAreaStock.getText());
-//        instance.setValue("key_coins", textAreaCoin.getText());
         instance.setValue("key_colorful",!checkbox.isSelected());
         instance.setValue("key_cron_expression_stock", cronExpressionStock.getText());
         instance.setValue("key_table_striped", checkBoxTableStriped.isSelected());
         instance.setValue("key_stocks_sina",checkboxSina.isSelected());
         instance.setValue("key_close_log",checkboxLog.isSelected());
+        instance.setValue(Consts.KEY_ALERT,alertCheckBox.isSelected());
         String proxy = inputProxy.getText().trim();
         instance.setValue("key_proxy",proxy);
         HttpClientPool.getHttpClient().buildHttpClient(proxy);
         StockWindow.apply();
-        FundWindow.apply();
     }
 
 

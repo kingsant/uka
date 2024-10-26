@@ -28,7 +28,6 @@ public class TencentStockHandler extends StockRefreshHandler {
     @Override
     public void handle(List<String> code) {
 
-        //LogUtil.info("Leeks 更新Stock编码数据.");
 //        clearRow();
         if (code.isEmpty()) {
             return;
@@ -56,7 +55,7 @@ public class TencentStockHandler extends StockRefreshHandler {
 
     @Override
     public void stopHandle() {
-        LogUtil.info("Leeks 准备停止更新Stock编码数据.");
+        LogUtil.info("uka 准备停止更新Stock编码数据.");
     }
 
     private void stepAction() {

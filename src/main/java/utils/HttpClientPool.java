@@ -56,7 +56,7 @@ public class HttpClientPool {
                 int port = Integer.parseInt(s[1]);
                 httpClientBuilder.setProxy(new HttpHost(host,port));
             }
-            LogUtil.info("Leeks setup proxy success->"+proxyStr);
+            LogUtil.info("uka setup proxy success->"+proxyStr);
         }
         httpClient =httpClientBuilder.setDefaultRequestConfig(requestConfig).build();
     }

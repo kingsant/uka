@@ -14,7 +14,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <toolWindow anchor="bottom" id="uka" factoryClass="FundWindow"/>
-        <applicationConfigurable id="leeks_settings" displayName="uka" instance="SettingsWindow"/>
+        <applicationConfigurable id="uka_settings" displayName="uka" instance="SettingsWindow"/>
         <notificationGroup id="uka Notification Group" displayType="BALLOON"/>
     </extensions>
 

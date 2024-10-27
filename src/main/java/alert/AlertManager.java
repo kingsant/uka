@@ -30,5 +30,6 @@ public class AlertManager {
             return;
         }
         NoticeManager.notify("uka", res);
+        PriceTimelineManager.cleanTimeline(bean.getCode());
     }
 }

@@ -6,6 +6,7 @@ import com.google.common.cache.CacheBuilder;
 import entity.TimeNode;
 import entity.TimeWrapper;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class PriceTimelineManager {
@@ -24,7 +25,6 @@ public class PriceTimelineManager {
         //up to | low to
         TimeWrapper wrapper = codeCache.getIfPresent(code);
         if (wrapper == null) {
-
             wrapper = new TimeWrapper(code, percentage, time);
             codeCache.put(code, wrapper);
             return null;
@@ -37,5 +37,12 @@ public class PriceTimelineManager {
            return code + " -> " + percentage  + "(" + distance + ")";
         }
 
+    }
+
+    public static void cleanTimeline(String code) {
+        TimeWrapper wrapper = codeCache.getIfPresent(code);
+        if (wrapper != null) {
+            wrapper.setTimeline(new ArrayList<>());
+        }
     }
 }

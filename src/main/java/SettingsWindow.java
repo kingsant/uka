@@ -126,6 +126,7 @@ public class SettingsWindow  implements Configurable {
         if (Strings.isEmpty(value)) {
             return new ArrayList<>();
         }
+        value = value.replace("\n", ";");
         Set<String> set = new LinkedHashSet<>();
         String[] codes = null;
         if (value.contains(";")) {//包含分号

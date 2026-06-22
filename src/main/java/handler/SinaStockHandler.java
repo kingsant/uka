@@ -3,7 +3,7 @@ package handler;
 import bean.StockBean;
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.compress.utils.Lists;
 import utils.HttpClientPool;
 import utils.LogUtil;
 
@@ -63,6 +63,11 @@ public class SinaStockHandler extends StockRefreshHandler {
         }
     }
 
+    public static void main(String[] args) {
+        List<String> es = Lists.newArrayList();
+        es.add("sh600519");
+        new SinaStockHandler(null, null).pollStock(es);
+    }
     public void handleResponse(String response, Map<String, String[]> codeMap) {
         List<String> refreshTimeList = new ArrayList<>();
         for (String line : response.split("\n")) {
@@ -93,7 +98,7 @@ public class SinaStockHandler extends StockRefreshHandler {
             bean.setMin(split[5]);
 
             String costPriceStr = bean.getCostPrise();
-            if (StringUtils.isNotEmpty(costPriceStr)) {
+            if (org.apache.commons.lang3.StringUtils.isNotBlank(costPriceStr)) {
                 BigDecimal costPriceDec = new BigDecimal(costPriceStr);
                 BigDecimal incomeDiff = now.add(costPriceDec.negate());
                 BigDecimal incomePercentDec = incomeDiff.divide(costPriceDec, 5, RoundingMode.HALF_UP)
@@ -103,7 +108,7 @@ public class SinaStockHandler extends StockRefreshHandler {
                 bean.setIncomePercent(incomePercentDec.toString());
 
                 String bondStr = bean.getBonds();
-                if (StringUtils.isNotEmpty(bondStr)) {
+                if (org.apache.commons.lang3.StringUtils.isNotBlank(bondStr)) {
                     BigDecimal bondDec = new BigDecimal(bondStr);
                     BigDecimal incomeDec = incomeDiff.multiply(bondDec)
                             .setScale(2, RoundingMode.HALF_UP);

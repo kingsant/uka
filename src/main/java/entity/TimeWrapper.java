@@ -3,7 +3,6 @@ package entity;
 
 import cn.hutool.core.date.DateUtil;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.lucene.util.CollectionUtil;
 
 import java.util.ArrayList;
 import java.util.Date;

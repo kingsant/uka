@@ -1,20 +1,30 @@
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.9.25"
-    id("org.jetbrains.intellij") version "1.17.4"
+    // IntelliJ Platform Gradle Plugin 2.x (2.11.x is the last line compatible with Gradle 8.x).
+    // Read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
+    id("org.jetbrains.intellij.platform") version "2.11.0"
 }
 
 group = "com.example"
 version = "1.0-SNAPSHOT"
 
 repositories {
-    //    mavenCentral()
     maven {
         url = uri("https://maven.aliyun.com/repository/public")
+    }
+    mavenCentral()
+    // Required by the IntelliJ Platform Gradle Plugin to resolve platform artifacts.
+    intellijPlatform {
+        defaultRepositories()
     }
 }
 
 dependencies {
+    intellijPlatform {
+        // Resolve the platform SDK from the locally installed IntelliJ IDEA 2026.1.
+        local("/Applications/IntelliJ IDEA.app/Contents")
+    }
+
     implementation("com.github.promeg:tinypinyin:2.0.3")
     implementation("cn.hutool:hutool-all:5.7.10")
     implementation("com.google.guava:guava:30.1-jre")
@@ -25,38 +35,31 @@ dependencies {
     }
 }
 
-// Configure Gradle IntelliJ Plugin
-// Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
-intellij {
-    localPath.set("D:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.2.4")
-    //    version.set("2023.2.6")
-    //    type.set("IC") // Target IDE Platform
-
-    plugins.set(listOf(/* Plugin Dependencies */))
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
-tasks {
-    // Set the JVM compatibility versions
-    withType<JavaCompile> {
-        sourceCompatibility = "17"
-        targetCompatibility = "17"
-    }
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
-    }
-
-    patchPluginXml {
-        sinceBuild.set("232")
-        untilBuild.set("242.*")
+// Configure IntelliJ Platform Gradle Plugin
+// Read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-extension.html
+intellijPlatform {
+    pluginConfiguration {
+        version = project.version.toString()
+        ideaVersion {
+            sinceBuild = "261"
+            // No upper bound: compatible with 2026.1 and every later build.
+            untilBuild = provider { null }
+        }
     }
 
-    signPlugin {
-        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-        privateKey.set(System.getenv("PRIVATE_KEY"))
-        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
+    signing {
+        certificateChain = System.getenv("CERTIFICATE_CHAIN")
+        privateKey = System.getenv("PRIVATE_KEY")
+        password = System.getenv("PRIVATE_KEY_PASSWORD")
     }
 
-    publishPlugin {
-        token.set(System.getenv("PUBLISH_TOKEN"))
+    publishing {
+        token = System.getenv("PUBLISH_TOKEN")
     }
 }

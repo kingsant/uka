@@ -17,7 +17,11 @@ repositories {
     intellijPlatform {
         defaultRepositories()
     }
+
+
+    test
 }
+
 
 dependencies {
     intellijPlatform {
